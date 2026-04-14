@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lesson 3 Exercise</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script>
+        console.log("JS from script tag");
+    </script>
+    <script>
+        console.log("JS from script tag");
+    </script>
+    <script src="/react-basics.js"></script>
+    <script src="https://unpkg.com/supersimpledev@8.6.4/external-library.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/chatbot.js"></script> 
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+    <script type="text/babel">
+
+      function Counter({count, setCount}){
+        //const[count,setCount]=React.useState(0);
+        function clickHandler(){
+            setCount(count+1);
+        }
+        return (
+          <div>
+            <button onClick={clickHandler}>Clicked {count} {count===1||count===0?'time':'times'}</button>
+          </div>
+        );
+      }
+
+      function Reset({count, setCount}){
+        function clickHandler(){
+          setCount(0);
+        }
+        return (
+          <button onClick={clickHandler}>Reset</button>
+        );
+      }
+    
+      function App(){
+        const [count,setCount]=React.useState(0);
+        return (
+            <>
+                <Counter count={count} setCount={setCount}/>
+                <Counter count={count} setCount={setCount}/>
+                <Reset count={count} setCount={setCount}/>
+            </>
+        );
+      }
+
+      const container = document.querySelector('.js-container');
+      const root = ReactDOM.createRoot(container);
+      root.render(<App/>);
+    </script>
+  </body>
+</html>

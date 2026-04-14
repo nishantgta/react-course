@@ -1,0 +1,1 @@
+console.log("JS from another file!");
