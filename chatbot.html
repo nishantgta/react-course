@@ -19,6 +19,11 @@
         border-radius: 10px;
         border-width: 1px;
         font-size: 15px;
+        flex-grow: 1;
+      }
+
+      .chat-input-container{
+        display: flex;
       }
     </style>
   </head>
@@ -90,7 +95,7 @@
           }
         }
         return (
-          <>
+          <div className="chat-input-container">
             <input 
               placeholder="Send a message to Chatbot" 
               size="30"
@@ -100,7 +105,7 @@
               className="chat-input"
             />
             <button onClick={sendMessage} className="send-button">Send</button>
-          </>
+          </div>
         );
       }
 
