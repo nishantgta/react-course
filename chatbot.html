@@ -187,9 +187,15 @@
 
       function ChatMessages({chatMessages}){
         /*run some code after the component is created or updated*/
+        const chatMessagesRef = React.useRef(null);
         React.useEffect(()=>{
-          console.log("updated in useEffect");
-        });
+          // console.log("Use Effect!!");
+          console.log(chatMessagesRef.current);
+          const containerElem = chatMessagesRef.current;
+          if(containerElem){
+            containerElem.scrollTop = containerElem.scrollHeight;
+          }
+        },[chatMessages]);
         const chatMessageComponents = chatMessages.map((chatMessage)=>{
           return (
               <ChatMessage 
@@ -200,7 +206,8 @@
             );
         });
         return (
-          <div className="chat-messages-container">
+          <div className="chat-messages-container"
+            ref={chatMessagesRef}>
             {chatMessageComponents}
           </div>
         );
