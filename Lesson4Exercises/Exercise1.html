@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lesson 4 Exercise</title>
+    <style>
+        body{
+            margin-left: 0px;
+            margin-right: 0px;
+            padding: 0px;
+        }
+        .heading{
+            margin-left: 5px;
+        }
+        .username{
+            margin-top: 10px;
+            margin-left: 5px;
+            margin-bottom: 5px;
+            padding: 10px;
+            border: 1px solid black;
+            border-radius: 7.5px;
+        }
+        .show-password{
+            margin-left: 10px;
+            background-color: rgb(0,123,255);
+            border-radius: 7.5px;
+            padding: 5px;
+            color: white;
+            border: 1px solid black;
+        }
+        .password{
+            margin-top: 5px;
+            margin-left: 5px;
+            padding: 10px;
+            border: 1px solid black;
+            border-radius: 7.5px;
+        }
+        .login-button{
+            background-color: rgb(0,123,255);
+            color: white;
+            margin-left: 5px;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 7.5px;
+            border-width: 0px;
+        }
+        .sign-up-button{
+            background-color: rgb(0,123,255);
+            color: white;
+            margin-left: 5px;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 7.5px;
+            border-width: 0px;
+        }
+        .counter-element{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40vh;
+            background-color: rgb(222,222,222);
+        }
+        .click-counter-button{
+            background-color: rgb(25, 135, 84);
+            color : white;
+            margin-right: 10px;
+            border-width: 0px;
+            padding: 10px;
+        }
+        .reset-button{
+            background-color: rgb(25,135,84);
+            color: white;
+            margin-right: 10px;
+            border-width: 0px;
+            padding: 10px;
+        }
+        .auto-click-button{
+            background-color: rgb(25, 135, 84);
+            color: white;
+            border-width: 0px;
+            padding: 10px;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script>
+        console.log("JS from script tag");
+    </script>
+    <script>
+        console.log("JS from script tag");
+    </script>
+    <script src="/react-basics.js"></script>
+    <script src="https://unpkg.com/supersimpledev@8.6.4/external-library.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/chatbot.js"></script> 
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+    <script type="text/babel">
+    
+      function App(){
+        const [showPassword, setShowPassword] = React.useState(false);
+        const [time, setTime] = React.useState(dayjs().format('HH:mm:ss'));
+        const [count, setCount] = React.useState(0);
+        const counterButtonRef = React.useRef(null);
+        const [applyButtonClicked, setApplyButtonClicked] = React.useState(false);
+
+        function showPasswordClickHandler(){
+            console.log(time);
+            setShowPassword(!showPassword);
+        }
+
+        function resetButtonHandler(){
+            setCount(0);
+        }
+
+        function autoClickButtonHandler(){
+            console.log('bhai mera');
+            const tempVar = applyButtonClicked;
+            setApplyButtonClicked(!tempVar);
+                // setInterval(()=>{
+                //     const buttonElem = counterButtonRef.current;
+                //     if(buttonElem){
+                //         buttonElem.click();
+                //     }
+                // },1000);
+            //console.log("Bhai mera="+applyButtonClicked);
+        }
+
+        React.useEffect(()=>{
+            setInterval(()=>{
+                console.log('run code!');
+                setTime(dayjs().format('HH:mm:ss'));
+            },1000)
+        },[]);
+
+        React.useEffect(()=>{
+            setInterval(()=>{
+                const buttonElem = counterButtonRef.current;
+                console.log("Button Clicked value="+applyButtonClicked);
+                if(buttonElem){
+                    if(applyButtonClicked === true){
+                        buttonElem.click();
+                    }
+                }
+            },1000);
+        },[applyButtonClicked]);
+
+        function counterButtonClicked(){
+            setCount(count+1);
+        }
+
+        return (
+            <div>
+                <h2 className="heading">Hello, welcome to my website</h2>
+                <input className="username" placeholder="Email"/>
+                <br/>
+                <input className="password" placeholder="Password" type={showPassword===true?"text":"password"}/>
+                <button className="show-password" onClick={showPasswordClickHandler}>
+                    {showPassword===true?"Hide":"Show"}
+                </button>
+                <br/>
+                <button className="login-button">Login</button>
+                <button className="sign-up-button">Sign up</button>
+                <br/>
+                <p>Current time: {time}</p>
+                <div className="counter-element">
+                    <button className="click-counter-button" ref={counterButtonRef} onClick={counterButtonClicked}>Clicked {count} time</button> 
+                    <button className="reset-button" onClick={resetButtonHandler}>Reset</button>
+                    <button className="auto-click-button" onClick={autoClickButtonHandler}>Auto Click</button>   
+                </div>
+            </div>
+        );
+      }
+
+      const container = document.querySelector('.js-container');
+      const root = ReactDOM.createRoot(container);
+      root.render(<App/>);
+    </script>
+  </body>
+</html>
