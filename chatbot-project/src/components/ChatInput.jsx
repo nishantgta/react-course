@@ -1,7 +1,10 @@
 import {useState} from 'react';
 import {Chatbot} from 'supersimpledev';
+import LoadingSpinner from '../assets/loading-spinner.gif';
+import './ChatInput.css';
+import dayjs from 'dayjs';
 
-function ChatInput({chatMessages, setChatMessages, isLoading, setIsLoading}){
+export function ChatInput({chatMessages, setChatMessages, isLoading, setIsLoading}){
         const [inputText, setInputText] = useState('');
         function saveInputText(event){
           setInputText(event.target.value);
@@ -16,7 +19,8 @@ function ChatInput({chatMessages, setChatMessages, isLoading, setIsLoading}){
             {
               message:inputText,
               sender:'user',
-              id:crypto.randomUUID()
+              id:crypto.randomUUID(),
+              time:dayjs(dayjs().valueOf()).format('h:mma')
             }
           ];
           /*here add a new message in chatMessages using setChatMessages updater function*/
@@ -25,9 +29,9 @@ function ChatInput({chatMessages, setChatMessages, isLoading, setIsLoading}){
           setChatMessages([
             ...newChatMessages,
             {
-              message:<img src='loading-spinner.gif' className="spinner"></img>,
+              message:<img src={LoadingSpinner} className="spinner"></img>,
               sender:'robot',
-              id:crypto.randomUUID()
+              id:crypto.randomUUID(),
             }
           ]);
           setInputText('');
@@ -37,7 +41,8 @@ function ChatInput({chatMessages, setChatMessages, isLoading, setIsLoading}){
             {
               message:response,
               sender: 'robot',
-              id: crypto.randomUUID()
+              id: crypto.randomUUID(),
+              time:dayjs(dayjs().valueOf()).format('h:mma')
             }
           ]);
           setIsLoading(0);

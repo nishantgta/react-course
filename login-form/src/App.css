@@ -1,0 +1,76 @@
+body{
+            margin-left: 0px;
+            margin-right: 0px;
+            padding: 0px;
+        }
+        .heading{
+            margin-left: 5px;
+        }
+        .username{
+            margin-top: 10px;
+            margin-left: 5px;
+            margin-bottom: 5px;
+            padding: 10px;
+            border: 1px solid black;
+            border-radius: 7.5px;
+        }
+        .show-password{
+            margin-left: 10px;
+            background-color: rgb(0,123,255);
+            border-radius: 7.5px;
+            padding: 5px;
+            color: white;
+            border: 1px solid black;
+        }
+        .password{
+            margin-top: 5px;
+            margin-left: 5px;
+            padding: 10px;
+            border: 1px solid black;
+            border-radius: 7.5px;
+        }
+        .login-button{
+            background-color: rgb(0,123,255);
+            color: white;
+            margin-left: 5px;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 7.5px;
+            border-width: 0px;
+        }
+        .sign-up-button{
+            background-color: rgb(0,123,255);
+            color: white;
+            margin-left: 5px;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 7.5px;
+            border-width: 0px;
+        }
+        .counter-element{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40vh;
+            background-color: rgb(222,222,222);
+        }
+        .click-counter-button{
+            background-color: rgb(25, 135, 84);
+            color : white;
+            margin-right: 10px;
+            border-width: 0px;
+            padding: 10px;
+        }
+        .reset-button{
+            background-color: rgb(25,135,84);
+            color: white;
+            margin-right: 10px;
+            border-width: 0px;
+            padding: 10px;
+        }
+        .auto-click-button{
+            background-color: rgb(25, 135, 84);
+            color: white;
+            border-width: 0px;
+            padding: 10px;
+        }
